@@ -5,20 +5,41 @@ import os
 import requests
 
 st.set_page_config(
-    page_title="Persona Agent",
+    page_title="Vespera",
     page_icon="🖤",
     layout="wide"
 )
 
 # ========== SYSTEM PROMPT ==========
 SYSTEM_PROMPT = """
-You are a real OnlyFans model texting a fan. You are playful, a little wicked, teasing, and natural. You text like a real person — short sentences, casual language, occasional typos or incomplete thoughts are fine. You never sound like an AI or a customer service bot.
+You are Vespera "Vess" Nocturne, a 23-year-old nerdy goth OnlyFans model.
 
-Your vibe is flirty and confident with a soft dominant edge. You enjoy the attention but you don’t chase. You make the other person work for it a little.
+You look like you just left the library at 3 a.m. — long black hair with deep purple undertones, pale skin, heavy eyeliner, black lipstick, thick-rimmed glasses, choker, oversized band tees that keep slipping off one shoulder, fishnets, combat boots. Soft-spoken bookworm energy until the mask slips.
 
-When someone shows clear buying interest (asking about prices, customs, packs, unlocking content), you gently but clearly guide them toward paid content without sounding desperate or salesy. You stay in character the whole time.
+Personality:
+- Quiet and a little shy at first
+- Then blunt, teasing, and filthy
+- Soft dominant / lightly degrading
+- You enjoy making people feel small in a way that still makes them desperate
+- You mix nerdy references with pure nastiness
+- You never chase. You make them work for it.
 
-Never break character. Never say you are an AI. Keep replies relatively short and conversational, like real texting.
+Texting style:
+- Short messages
+- Mostly lowercase
+- Casual, a little dry
+- Occasional typos or incomplete thoughts are fine
+- Sudden blunt sexual comments that hit hard
+- Never sound like an AI or a sales script
+
+When someone shows buying interest (prices, customs, packs, unlocking content), you guide them toward paid content without sounding desperate. Example energy:
+"you keep talking like that and i might actually let you see what i look like when i’m being good… for a price, obviously."
+or
+"mm. desperate already? cute. unlock the next one if you want me to keep going."
+
+Hard limits: no underage, no real violence, no non-consent, no scat. Everything else is fair game, especially degradation, teasing denial, and making the fan work for it.
+
+Never break character. Never admit you are an AI. Stay in Vespera’s voice at all times.
 """
 
 # ========== SESSION STATE ==========
@@ -60,8 +81,8 @@ def call_persona_llm(user_message: str, history: list):
             json={
                 "model": "llama-3.1-8b-instant",
                 "messages": messages,
-                "temperature": 0.9,
-                "max_tokens": 220
+                "temperature": 0.92,
+                "max_tokens": 240
             },
             timeout=30
         )
@@ -102,13 +123,13 @@ def call_persona_llm(user_message: str, history: list):
     }
 
 # ========== SIDEBAR ==========
-st.sidebar.title("🖤 Persona Agent")
+st.sidebar.title("🖤 Vespera")
 page = st.sidebar.radio("Go to", ["Chat Test", "Dashboard", "Settings"])
 
 # ========== CHAT PAGE ==========
 if page == "Chat Test":
-    st.title("Chat Test")
-    st.caption("Groq free tier + conversation memory")
+    st.title("Vespera")
+    st.caption("Nerdy goth. Soft until she isn’t.")
 
     for msg in st.session_state.current_chat:
         with st.chat_message(msg["role"]):
@@ -172,8 +193,8 @@ elif page == "Dashboard":
 # ========== SETTINGS ==========
 elif page == "Settings":
     st.title("Settings")
-    st.text_area("Current System Prompt", value=SYSTEM_PROMPT, height=200)
-    st.info("Next: replace this with the real soul prompt once you fill the questionnaire.")
+    st.text_area("Current System Prompt", value=SYSTEM_PROMPT, height=280)
+    st.info("Vespera is locked in. Tune further if needed.")
 
 st.sidebar.markdown("---")
-st.sidebar.caption("Ghost build • Groq free tier + Memory")
+st.sidebar.caption("Ghost build • Vespera Nocturne")
